@@ -10,28 +10,44 @@ class App extends React.Component {
     filter: "",
   };
 
-  //   removeContact = (contact){
-  // this.setState({contacts: []})
-  //   }
+  onSubmit = (formState) => {
+    //cheking if there alredy exist such contacts
+    const checkedForMatch = this.state.contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(formState.name.toLowerCase())
+    );
 
-  changeFilter = (value) => {
+    //depend on that two variants
+    if (checkedForMatch.length === 0) {
+      this.setState({
+        contacts: [...this.state.contacts, formState],
+      });
+    } else {
+      alert("There is already contact with the same name");
+    }
+  };
+
+  removeContact = (contact) => {
+    console.log("delete btn");
+  };
+
+  updateFilter = (value) => {
     this.setState({ filter: value });
   };
 
-  onSubmit = (formState) => {
-    this.setState({
-      contacts: [...this.state.contacts, formState],
-    });
-  };
-
   render() {
+    const visibleContacts = this.state.contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
     return (
       <div>
         <h2>Phonebook</h2>
         <ContacsForm onSubmit={this.onSubmit} />
         <h2>Contacts</h2>
-        <Filter filter={this.state.filter} onChange={this.changeFilter} />
-        <ContasctsList contacts={this.state.contacts} />
+        <Filter filter={this.state.filter} onChange={this.updateFilter} />
+        <ContasctsList
+          contacts={visibleContacts}
+          removeContact={this.removeContact}
+        />
       </div>
     );
   }

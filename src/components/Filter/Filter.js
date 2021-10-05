@@ -13,7 +13,7 @@ export default class Filter extends React.Component {
   render() {
     return (
       <label>
-        Search through your contacts{" "}
+        Search through your contacts
         <input
           name="filterValue"
           onChange={this.handleFilterChange}
