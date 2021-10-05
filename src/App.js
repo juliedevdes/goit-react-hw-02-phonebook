@@ -19,25 +19,34 @@ class App extends React.Component {
     //depend on that two variants
     if (checkedForMatch.length === 0) {
       this.setState({
-        contacts: [...this.state.contacts, formState],
+        contacts: [...this.state.contacts, formState], //add new contact
       });
     } else {
-      alert("There is already contact with the same name");
+      alert("There is already contact with the same name"); //or notify user
     }
   };
 
-  removeContact = (contact) => {
-    console.log("delete btn");
+  removeContact = (contactId) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter(
+        (contact) => contact.id !== contactId
+      ),
+    }));
   };
 
   updateFilter = (value) => {
     this.setState({ filter: value });
   };
 
-  render() {
-    const visibleContacts = this.state.contacts.filter((contact) =>
+  getVisibleContacts = () => {
+    return this.state.contacts.filter((contact) =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
     );
+  };
+
+  render() {
+    const visibleContacts = this.getVisibleContacts();
+
     return (
       <div>
         <h2>Phonebook</h2>

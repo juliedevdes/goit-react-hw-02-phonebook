@@ -1,22 +1,26 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default class ContacsForm extends React.Component {
   state = {
     name: "",
     number: "",
+    id: uuidv4(),
   };
 
   handleInputChange = (e) => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state);
     this.props.onSubmit(this.state);
     this.reset();
   };
 
   reset = () => {
-    this.setState({ name: "", number: "" });
+    this.setState({ name: "", number: "", id: uuidv4() });
   };
 
   render() {
