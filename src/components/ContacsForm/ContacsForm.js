@@ -42,6 +42,7 @@ export default class ContacsForm extends React.Component {
             value={this.state.name}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             type="text"
+            required
           />
         </label>
         <label className={s.label}>
@@ -54,6 +55,7 @@ export default class ContacsForm extends React.Component {
             value={this.state.number}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             type="tel"
+            required
           />
         </label>
         <button className={s.btn} type="submit">
