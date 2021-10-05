@@ -4,6 +4,8 @@ import ContacsForm from "./components/ContacsForm/ContacsForm";
 import ContasctsList from "./components/ContactList/ContactsList";
 import Filter from "./components/Filter/Filter";
 
+import s from "./App.module.css";
+
 class App extends React.Component {
   state = {
     contacts: [],
@@ -11,18 +13,16 @@ class App extends React.Component {
   };
 
   onSubmit = (formState) => {
-    //cheking if there alredy exist such contacts
     const checkedForMatch = this.state.contacts.filter((contact) =>
       contact.name.toLowerCase().includes(formState.name.toLowerCase())
     );
 
-    //depend on that two variants
     if (checkedForMatch.length === 0) {
       this.setState({
-        contacts: [...this.state.contacts, formState], //add new contact
+        contacts: [...this.state.contacts, formState],
       });
     } else {
-      alert("There is already contact with the same name"); //or notify user
+      alert("There is already contact with the same name");
     }
   };
 
@@ -48,7 +48,7 @@ class App extends React.Component {
     const visibleContacts = this.getVisibleContacts();
 
     return (
-      <div>
+      <div className={s.root}>
         <h2>Phonebook</h2>
         <ContacsForm onSubmit={this.onSubmit} />
         <h2>Contacts</h2>

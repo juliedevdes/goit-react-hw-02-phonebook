@@ -1,7 +1,14 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import s from "./ContactForm.module.css";
+
+import PropTypes from "prop-types";
 
 export default class ContacsForm extends React.Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     name: "",
     number: "",
@@ -14,7 +21,6 @@ export default class ContacsForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
     this.props.onSubmit(this.state);
     this.reset();
   };
@@ -27,8 +33,9 @@ export default class ContacsForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name
+          name:
           <input
+            className={s.inputName}
             placeholder="Jane Wayeet"
             name="name"
             onChange={this.handleInputChange}
@@ -37,9 +44,10 @@ export default class ContacsForm extends React.Component {
             type="text"
           />
         </label>
-        <label>
-          Number
+        <label className={s.label}>
+          number:
           <input
+            className={s.inputNum}
             placeholder="+ 00-000-00"
             name="number"
             onChange={this.handleInputChange}
@@ -48,7 +56,9 @@ export default class ContacsForm extends React.Component {
             type="tel"
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button className={s.btn} type="submit">
+          add contact
+        </button>
       </form>
     );
   }

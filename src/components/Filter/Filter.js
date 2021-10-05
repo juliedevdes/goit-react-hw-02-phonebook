@@ -1,6 +1,13 @@
 import React from "react";
+import s from "./Filter.module.css";
+import PropTypes from "prop-types";
 
 export default class Filter extends React.Component {
+  static propTypes = {
+    filter: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+  };
+
   state = {
     filterValue: "",
   };
@@ -12,9 +19,11 @@ export default class Filter extends React.Component {
 
   render() {
     return (
-      <label>
-        Search through your contacts
+      <label className={s.label}>
+        search through your contacts
         <input
+          placeholder="..."
+          className={s.input}
           name="filterValue"
           onChange={this.handleFilterChange}
           value={this.state.filterValue}
