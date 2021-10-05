@@ -3,7 +3,7 @@ import React from "react";
 export default class ContacsForm extends React.Component {
   state = {
     name: "",
-    number: "+",
+    number: "",
   };
 
   handleInputChange = (e) => {
@@ -16,16 +16,16 @@ export default class ContacsForm extends React.Component {
   };
 
   reset = () => {
-    this.setState({ name: "", number: 0 });
+    this.setState({ name: "", number: "" });
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        Phonebook
         <label>
           Name
           <input
+            placeholder="Jane Wayeet"
             name="name"
             onChange={this.handleInputChange}
             value={this.state.name}
@@ -36,6 +36,7 @@ export default class ContacsForm extends React.Component {
         <label>
           Number
           <input
+            placeholder="+ 00-000-00"
             name="number"
             onChange={this.handleInputChange}
             value={this.state.number}
