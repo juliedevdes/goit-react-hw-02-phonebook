@@ -13,10 +13,6 @@ class App extends React.Component {
   };
 
   onSubmit = (formState) => {
-    const checkedForMatch = this.state.contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(formState.name.toLowerCase())
-    );
-
     if (!this.state.contacts.some((el) => el.name === formState.name)) {
       this.setState({
         contacts: [...this.state.contacts, formState],
